@@ -1,0 +1,2 @@
+Cliente{numCliente=10700, nombre='Marialuisa', apellido1='Ramirez', apellido2='Yellow', saldo=-2376, ingresosMedios=31, gastosMedios=9562, direccion='Virgendelujan', codigoPostal=41065}
+Cliente{numCliente=9400, nombre='Paula', apellido1='Valero', apellido2='Saez', saldo=-1, ingresosMedios=3932, gastosMedios=4190, direccion='Virgendelosbuenoslibros', codigoPostal=41085}

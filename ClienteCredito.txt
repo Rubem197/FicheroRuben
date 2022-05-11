@@ -1,0 +1,1 @@
+Cliente{numCliente=4800, nombre='Jorge', apellido1='Blazquez', apellido2='Lozano', saldo=435, ingresosMedios=1470, gastosMedios=2083, direccion='Zafiro', codigoPostal=41004}

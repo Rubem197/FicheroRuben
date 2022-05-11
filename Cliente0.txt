@@ -1,0 +1,4 @@
+Cliente{numCliente=10800, nombre='prueba1', apellido1='idk', apellido2='rojo', saldo=0, ingresosMedios=31, gastosMedios=9562, direccion='Virgendelujan', codigoPostal=41065}
+Cliente{numCliente=10900, nombre='prueba2', apellido1='Perea', apellido2='verde', saldo=0, ingresosMedios=31, gastosMedios=9562, direccion='Virgendelujan', codigoPostal=41065}
+Cliente{numCliente=11000, nombre='prueba3', apellido1='Garcia', apellido2='asu', saldo=0, ingresosMedios=31, gastosMedios=9562, direccion='Virgendelujan', codigoPostal=41065}
+Cliente{numCliente=11000, nombre='prueba3', apellido1='Garcia', apellido2='asu', saldo=0, ingresosMedios=31, gastosMedios=9562, direccion='Virgendelujan', codigoPostal=41065}
