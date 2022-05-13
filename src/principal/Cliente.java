@@ -1,7 +1,9 @@
 package principal;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +20,10 @@ public class Cliente {
     private String direccion;
     private int codigoPostal;
 
-    public  static List <Cliente> listaCliente = new ArrayList<>();
+    public static List<Cliente> listaCliente = new ArrayList<>();
+    public static List<Cliente> listaClienteSaldo0 = new ArrayList<>();
+    public static List<Cliente> listaClienteCredito = new ArrayList<>();
+    public static List<Cliente> listaClienteDebito = new ArrayList<>();
 
     public Cliente(int numCliente, String nombre, String apellido1, String apellido2, int saldo,
                    int ingresosMedios, int gastosMedios, String direccion, int codigoPostal) {
@@ -44,7 +49,7 @@ public class Cliente {
     }
 
 
-    public static void menu(){
+    public static void menu() {
 
         Scanner opcion = new Scanner(System.in);
         int opc;
@@ -56,55 +61,49 @@ public class Cliente {
         System.out.println("4. Generar cartas a los clientes super Vips");
         System.out.println("5. Generar cartas a los clientes Robinson");
         System.out.println("0. Salir");
-        opc=opcion.nextInt();
+        opc = opcion.nextInt();
 
+        while (opc != 0) {
 
-        while (opc!=0){
-
-            switch (opc){
+            switch (opc) {
 
                 case 1:
-                    clientesSaldo0.insertarListaClienteSaldo0(clientesSaldo0.generarListaClientesSaldo0());
+                    generarListaCliente(opc);
                     break;
                 case 2:
-                    ClienteCredito.insertarListaClienteCredito(ClienteCredito.generarListaClientesCredito());
+                    generarListaCliente(opc);
                     break;
                 case 3:
-                    ClienteDebito.insertarListaClienteDebito(ClienteDebito.generarListaClientesDebito());
+                    generarListaCliente(opc);
                     break;
-
+                case 4:
+                    insertarListaCliente();
+                    break;
                 default:
                     System.out.println("Opcion equivocada");
 
-
             }
 
-
             System.out.println("Seleccione otra opcion");
-             opc= opcion.nextInt();
-
+            opc = opcion.nextInt();
 
         }
 
-
-
     }
 
-    public static List<Cliente> generarLista(){
+    public static List<Cliente> generarLista() {
         String text = "Clientes.txt";
         String linea;
         Scanner sc;
         BufferedReader buffer1;
-        String codigo="";
-        String [] parte;
+        String codigo = "";
+        String[] parte;
 
         try {
 
             buffer1 = new BufferedReader(new FileReader(text));
 
-
-
-            while ( (linea=buffer1.readLine()) != null) {
+            while ((linea = buffer1.readLine()) != null) {
 
                 sc = new Scanner(linea);
 
@@ -114,22 +113,65 @@ public class Cliente {
                 listaCliente.add(new Cliente(Integer.parseInt(parte[0]), parte[1], parte[2], parte[3],
                         Integer.parseInt(parte[4]), Integer.parseInt(parte[5]), Integer.parseInt(parte[6]),
                         parte[7], Integer.parseInt(parte[8])));
-
                 codigo = "";
-
-
             }
             buffer1.close();
 
-
-
-        }catch (Exception e){
-
+        } catch (Exception e) {
             System.out.println("Algó falló");
+        }
+        return listaCliente;
+    }
 
+
+    public static List<Cliente> generarListaCliente(int opc) {
+        int contador = 0;
+
+        while (contador < Cliente.listaCliente.size()) {
+
+            if ((Cliente.listaCliente.get(contador).getSaldo()) == 0 && opc ==1) {
+
+                if (!listaClienteSaldo0.contains(Cliente.listaCliente.get(contador))) {
+                    listaClienteSaldo0.add(Cliente.listaCliente.get(contador));
+
+
+                }
+            } else if ((Cliente.listaCliente.get(contador).getSaldo()) > 0 && (Cliente.listaCliente.get(contador).getSaldo()) < 3000 && opc ==2) {
+
+                if (!listaClienteCredito.contains(Cliente.listaCliente.get(contador))) {
+                    listaClienteCredito.add(Cliente.listaCliente.get(contador));
+
+                }
+            }else if  ((listaClienteDebito.get(contador).getSaldo()) <0 && (listaClienteDebito.get(contador).getSaldo()) > -3000 && opc ==3) {
+
+                if (!listaClienteDebito.contains(listaClienteDebito.get(contador))) {
+                    listaClienteDebito.add(listaClienteDebito.get(contador));
+
+
+                }
+            }
+
+
+            contador++;
         }
 
-        return listaCliente;
+        return listaClienteSaldo0;
+    }
+
+    public static void insertarListaCliente(List<Cliente> mostrar) {
+
+        try {
+            FileWriter t1 = new FileWriter("Cliente0.txt");
+            BufferedWriter pw = new BufferedWriter(t1);
+            for (int i = 0; i < mostrar.size(); i++) {
+
+                pw.append(mostrar.get(i).toString());
+                pw.write('\n');
+            }
+            pw.close();
+        } catch (Exception e) {
+            System.out.println("awa");
+        }
     }
 
 
